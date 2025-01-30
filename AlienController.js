@@ -12,11 +12,11 @@ export default class AlienController {
   ];
 
   //untuk menyimpan alien yang masih aktif
-  enemyRows = ();
+  enemyRows = [];
   score = 0;
 
   // saat pertama load canvas, objectnya masih diem, jadi kecepatannya 0. kalau kecepatan 0, dijadikan defaultnya menjadi 1
-  currentDirection = ArahGerak;
+  currentDirection = ArahGerak.right;
   xVelocity = 0;
   yVelocity = 0;
   defaultXVelocity = 1;
@@ -29,7 +29,7 @@ export default class AlienController {
   moveDownTimer = this.moveDownTimerDefault;
 
   //nilai fireBulletTimerDefault menentukan seberapa sering alien dapat menembakkan peluru dalam setiap interval game loop.
-  fireBulletTimerDefault = -30;
+  fireBulletTimerDefault = 30;
   fireBulletTimer = this.fireBulletTimerDefault;
 
   constructor(
@@ -55,16 +55,16 @@ export default class AlienController {
   // Jika waktu antara pergerakan ke bawah lebih lama (nilai default yang lebih besar), musuh akan memiliki lebih banyak waktu untuk menempuh jarak vertikal yang lebih besar sebelum bergerak ke bawah lagi.
   setMoveDownTimerDefault(levelSelect) {
     if (levelSelect == "easy") {
-      this.moveDownTimerDefault = -30;
+      this.moveDownTimerDefault = 30;
     }
     if (levelSelect == "medium") {
-      this.moveDownTimerDefault = -45;
+      this.moveDownTimerDefault = 45;
     }
     if (levelSelect == "hard") {
-      this.moveDownTimerDefault = -60;
+      this.moveDownTimerDefault = 60;
     }
     if (levelSelect == "veryhard") {
-      this.moveDownTimerDefault = -100;
+      this.moveDownTimerDefault = 100;
     }
   }
 
@@ -124,8 +124,8 @@ export default class AlienController {
   decrementMoveDownTimer() {
     // cuma menghitung moveDownTimer-- ketika geraknya ke bawah
     if (
-      this.currentDirection = ArahGerak.downLeft 
-      this.currentDirection = ArahGerak.downRight
+      this.currentDirection === ArahGerak.downLeft ||
+      this.currentDirection === ArahGerak.downRight
     ) {
       this.moveDownTimer--;
     }
@@ -135,7 +135,7 @@ export default class AlienController {
   updateVelocityAndDirection() {
     for (const enemyRow of this.enemyRows) {
       //Jika currentDirection adalah ArahGerak.right, maka musuh akan bergerak ke kanan (xVelocity positif) dan tidak bergerak secara vertikal (yVelocity 0).
-      if (this.currentDirection = ArahGerak.right) {
+      if (this.currentDirection == ArahGerak.right) {
         this.xVelocity = this.defaultXVelocity;
         this.yVelocity = 0;
         const rightMostEnemy = enemyRow[enemyRow.length - 1];

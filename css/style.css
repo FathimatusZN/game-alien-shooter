@@ -18,9 +18,9 @@ body {
   margin: 0px;
   height: 100vh;
   background: linear-gradient(0deg, rgb(97, 98, 99) 0%, rgba(0, 0, 0, 0) 100%);
-  background-image: url("./images/landingpage-bg.jpg");
+  background-image: url("../images/landingpage-bg.jpg");
   background-repeat: no-repeat;
-  background: cover;
+  background-size: cover;
   background-position: center;
   position: relative;
 }
@@ -55,9 +55,7 @@ body {
   color: white;
   text-shadow: 2px 2px 4px black; /* Menambahkan bayangan dengan offset (2px horizontal, 2px vertikal) dan radius blur 4px */
 }
-#game-start h2 {
-  font-size: 30px;
-}
+
 #game-start h3 {
   font-size: 30px;
   color: rgb(154, 221, 255);
@@ -100,7 +98,7 @@ button {
   font-size: 18px; /* Larger font size */
 }
 .konten-kanan button {
-  display: none;
+  display: block;
   margin: 30px auto;
   padding: 10px;
   font-size: 16px;
@@ -154,7 +152,7 @@ button {
 
 .konten-kiri {
   flex: 1;
-  display: inline-flex;
+  display: flex;
   flex-direction: column; /* Menjadikan elemen di dalamnya berjejer secara vertikal */
   align-items: flex-start; /* Menempatkan elemen di sebelah kiri */
   justify-content: center; /* Menempatkan elemen di sebelah atas */

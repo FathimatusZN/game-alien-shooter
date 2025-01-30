@@ -24,10 +24,10 @@ export default class Peluru {
 
   collideWith(sprite) {
     if (
-      (this.x + this.width > sprite.x) &
-      (this.x < sprite.x + sprite.width) &
-      (this.y + this.height > sprite.y) &
-      (this.y < sprite.y + sprite.height)
+      this.x + this.width > sprite.x &&
+      this.x < sprite.x + sprite.width &&
+      this.y + this.height > sprite.y &&
+      this.y < sprite.y + sprite.height
     ) {
       return true;
     } else {

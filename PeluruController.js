@@ -18,14 +18,14 @@ export default class PeluruController {
   draw(ctx) {
     // Dalam filter tersebut, setiap peluru akan diuji untuk melihat apakah masih berada di dalam kanvas permainan (diberikan oleh kondisi bullet.y + bullet.width > 0 && bullet.y <= this.canvas.height). Peluru yang masih dalam batas kanvas akan disimpan kembali dalam array bullets.
     this.bullets = this.bullets.filter(
-      (bullet) => bullet + bullet.width > 0 & bullet <= this.canvas.height
+      (bullet) => bullet.y + bullet.width > 0 && bullet.y <= this.canvas.height
     );
 
     // Setelah peluru-peluru yang tidak aktif dihapus, langkah berikutnya adalah menggambar setiap peluru yang tersisa. Ini dilakukan dengan menggunakan metode forEach pada array bullets, di mana setiap peluru dijalankan metode draw-nya untuk digambar pada konteks ctx.
     this.bullets.forEach((bullet) => bullet.draw(ctx));
     // memeriksa apakah ada penundaan waktu yang diterapkan sebelum peluru berikutnya dapat ditembakkan, untuk mengatur frekuensi penembakan peluru, sehingga tidak terlalu sering.
     if (this.timeTillNextBulletAllowed > 0) {
-      this.timeTillNextBulletAllowed-;
+      this.timeTillNextBulletAllowed--;
     }
   }
 
@@ -49,7 +49,7 @@ export default class PeluruController {
   // Jadi, meskipun tidak ada kasus di mana timeTillNextBulletAllowed diberikan nilai selain 0, pengecekan tersebut mencegah peluru ditembakkan terlalu sering dengan memeriksa kondisi waktu penundaan sebelum menembakkan peluru baru.
   shoot(x, y, velocity, timeTillNextBulletAllowed = 0) {
     if (
-      this.timeTillNextBulletAllowed <= 0 &
+      this.timeTillNextBulletAllowed <= 0 &&
       this.bullets.length < this.maxBulletsAtATime
     ) {
       const bullet = new Peluru(this.canvas, x, y, velocity, this.bulletColor);

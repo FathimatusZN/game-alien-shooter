@@ -47,8 +47,7 @@ function startGame() {
       showLevelElement.textContent =
         selectedLevel.charAt(0).toUpperCase() + selectedLevel.slice(1);
     }
-    const startSound = new Audio("sounds/start-click.wav");
-    startSound.play();
+
     // Mulai permainan dengan nama pemain dan level yang dipilih
     startNewGame(playerName, selectedLevel); // Memanggil startNewGame() dengan level yang diperbarui
     gameStarted = true; // Setel gameStarted menjadi true setelah permainan dimulai
@@ -107,41 +106,33 @@ function startNewGame(playerName, level) {
       ctx.fillText(text, canvas.width / 2, canvas.height / 2.5);
       ctx.fillText(textname, canvas.width / 2, canvas.height / 2);
       ctx.fillText(textScore, canvas.width / 2, canvas.height / 1.5); // Menampilkan skor di tengah canvas
-
-      // Memeriksa apakah game dimenangkan atau kalah dan memainkan suara yang sesuai
-     
     }
   }
 
   function checkGameOver() {
     if (isGameOver) {
       return;
-      document.getElementById("game-over-sound").play()
     }
 
     // kalau peluru alien mengenai pesawat/player
     if (enemyBulletController.collideWith(player)) {
       isGameOver = true;
-      document.getElementById("game-over-sound").play()
     }
 
     // kalau alien mengenai / bertabrakan dengan pesawat/ player
     if (enemyController.collideWith(player)) {
       isGameOver = true;
-      document.getElementById("game-over-sound").play()
     }
 
     // kalau objek alien sudah habis
     if (enemyController.enemyRows.length === 0) {
       didWin = true;
       isGameOver = true;
-      document.getElementById("win-sound").play();
     }
 
     // kalau alien mencapai batas bawah canvas
     if (enemyController.checkEnemyReachedBottom()) {
       isGameOver = true;
-      document.getElementById("game-over-sound").play()
     }
   }
 
@@ -149,13 +140,7 @@ function startNewGame(playerName, level) {
   setInterval(game, 1000 / 60);
 }
 
-// Deklarasi variabel-variabel global lainnya
-const backSound = new Audio("sounds/start-click.wav");
-backSound.volume = 0.1; // Atur volume suara jika diperlukan
-
-// Menambahkan event listener untuk tombol back_Btn
+// Menambahkan event listener untuk tombol back_btn
 backBtn.addEventListener("click", () => {
-  backSound.currentTime = 0; // Mengatur waktu audio ke awal (jika ingin memainkan suara dari awal setiap kali tombol diklik)
-  backSound.play(); // Memainkan suara saat tombol diklik
-  location.reload(); // Mengembalikan halaman atau melakukan tindakan lainnya sesuai dengan kebutuhan Anda
+  location.reload();
 });
